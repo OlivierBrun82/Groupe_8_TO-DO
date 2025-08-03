@@ -3,68 +3,35 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
+}
+
+main {
+    background-color: rgb(248, 248, 248);
 }
 
 img {
     width: 100%;
 }
 
-/* HEADER */
+.title {  
+    text-align: center;
+}
 
+  /*******************************************************************************/
+ /*                                HEADER                                       */
+/*******************************************************************************/
 header {
-    background-color: darkblue;
-    color: white;
-    text-align: center;
-    padding: 25px;
-}
-
-/* MAIN */
-
-main {
+    box-shadow: 0 0 10px 10px rgb(246, 245, 245);
     padding: 50px;
-    background-color: azure;
+    margin-top: 10px;
+}
+  /*******************************************************************************/
+ /*                                FOOTER                                       */
+/*******************************************************************************/
+footer {;
+    box-shadow: 0 0 10px 10px rgb(246, 245, 245);
+    padding: 50px;
 }
 
-h2 {
-    background-color: aliceblue;
-    padding: 5px;
-    margin: 5px;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-}
 
-.todoContainer {
-    display: flex;
-    justify-content: space-around;
-
-}
-
-.listContainer {
-    width: 250px;
-    background-color: aliceblue;
-    border-radius: 15px;
-    border: black;
-    border-style: solid 1px;
-    padding: 25px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
-}
-
-.formContainer {
-
-
-}
-
-/* FOOTER */
-
-footer {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 25px;
-}
