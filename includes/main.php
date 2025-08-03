@@ -13,10 +13,9 @@
         <select name="category" required>
             <option value="">Choisiser une catégorie</option>
             <?php
-                foreach ($a as $b) {
-                    echo '<option value="' . htmlspecialchars($cat) . '">' . '</option>';
+                foreach ($categories as $category) {
+                    echo '<option value="' . htmlspecialchars($category) . '">' . '</option>';
                 }
-
             ?>
         </select>
     </form>
