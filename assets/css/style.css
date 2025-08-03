@@ -21,15 +21,21 @@ header {
 /* MAIN */
 
 main {
-    padding: 250px;
-    margin: 5px;
+    padding: 50px;
     background-color: azure;
+}
+
+h2 {
+    background-color: aliceblue;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 15px;
 }
 
 .todoContainer {
     display: flex;
     justify-content: space-around;
-    flex-direction: row;
+
 }
 
 .listContainer {
