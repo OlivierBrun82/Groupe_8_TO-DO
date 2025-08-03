@@ -1,64 +1,78 @@
+
 <?php
 session_start();
 
-// Initialiser la liste des tâches s'il n'y en a pas encore
-if (!isset($_SESSION['tasks'])) {
-    $_SESSION['tasks'] = [];
+// Initialisation des catégories si elles n'existent pas
+if (!isset($_SESSION['todos'])) {
+    $_SESSION['todos'] = [
+        'course' => [],
+        'travail' => [],
+        'perso' => []
+    ];
 }
 
-// Ajouter une tâche
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['task']) && !empty(trim($_POST['task']))) {
-    $_SESSION['tasks'][] = htmlspecialchars($_POST['task']);
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit();
-}
+// Ajout de tâche
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['task'], $_POST['category'])) {
+    $task = trim($_POST['task']);
+    $cat = $_POST['category'];
 
-// Supprimer une tâche
-if (isset($_GET['delete'])) {
-    $index = (int) $_GET['delete'];
-    if (isset($_SESSION['tasks'][$index])) {
-        unset($_SESSION['tasks'][$index]);
-        $_SESSION['tasks'] = array_values($_SESSION['tasks']); // Réindexer
+    if ($task !== '' && isset($_SESSION['todos'][$cat])) {
+        $_SESSION['todos'][$cat][] = $task;
     }
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit();
+}
+
+// Suppression de tâche
+if (isset($_GET['delete'], $_GET['category'])) {
+    $index = (int)$_GET['delete'];
+    $cat = $_GET['category'];
+
+    if (isset($_SESSION['todos'][$cat][$index])) {
+        unset($_SESSION['todos'][$cat][$index]);
+        $_SESSION['todos'][$cat] = array_values($_SESSION['todos'][$cat]); // Réindexation
+    }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>To-Do List avec PHP</title>
-    <style>
-        body { font-family: Arial; margin: 2em; }
-        form { margin-bottom: 1em; }
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 0.5em; }
-        .delete { color: red; text-decoration: none; margin-left: 1em; }
-    </style>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
+<?php include "../includes/header.php" ?>
 <body>
+    <h1>Ma To-Do List par Catégorie</h1>
 
-    <h1>📝 Ma To-Do List</h1>
-
-    <form method="post">
-        <input type="text" name="task" placeholder="Ajouter une tâche" required>
+    <form method="POST" class="add-form">
+        <input type="text" name="task" placeholder="Nouvelle tâche" required>
+        <select name="category">
+            <option value="course">Course</option>
+            <option value="travail">Travail</option>
+            <option value="perso">Perso</option>
+        </select>
         <button type="submit">Ajouter</button>
     </form>
 
-    <?php if (!empty($_SESSION['tasks'])): ?>
-        <ul>
-            <?php foreach ($_SESSION['tasks'] as $index => $task): ?>
-                <li>
-                    <?= htmlspecialchars($task) ?>
-                    <a class="delete" href="?delete=<?= $index ?>" onclick="return confirm('Supprimer cette tâche ?')">❌</a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    <?php else: ?>
-        <p>Aucune tâche pour le moment.</p>
-    <?php endif; ?>
-
+    <div class="todo-container">
+        <?php foreach ($_SESSION['todos'] as $category => $tasks): ?>
+            <section class="todo-category">
+                <h2><?= ucfirst($category) ?></h2>
+                <?php if (empty($tasks)): ?>
+                    <p class="empty">Aucune tâche pour cette catégorie.</p>
+                <?php else: ?>
+                    <ul>
+                        <?php foreach ($tasks as $index => $task): ?>
+                            <li>
+                                <input type="checkbox" disabled>
+                                <span><?= htmlspecialchars($task) ?></span>
+                                <a class="delete-btn" href="?delete=<?= $index ?>&category=<?= $category ?>">🗑</a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </section>
+        <?php endforeach; ?>
+    </div>
+<?php include "../includes/footer.php" ?>
 </body>
 </html>
