@@ -3,68 +3,116 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
+    text-decoration: none;
 }
 
-img {
-    width: 100%;
+body {
+    background-color: rgb(252, 252, 252);
 }
 
-/* HEADER */
-
-header {
-    background-color: darkblue;
-    color: white;
+.title {  
     text-align: center;
-    padding: 25px;
 }
 
-/* MAIN */
+ul {
+    list-style-type: none;
+}
 
-main {
+  /*******************************************************************************/
+ /*                                HEADER                                       */
+/*******************************************************************************/
+header {
+    box-shadow: 0 0 10px 10px rgb(235, 235, 235);
     padding: 50px;
-    background-color: azure;
+    margin-top: 10px;   
+    background-color: rgb(85, 85, 255);
+    color: white;
 }
 
+  /*******************************************************************************/
+ /*                                MAIN                                       */
+/*******************************************************************************/
 h2 {
-    background-color: aliceblue;
-    padding: 5px;
-    margin: 5px;
+    padding: 30px;
+    box-shadow: 0 0 5px 5px rgb(235, 235, 235);
+    margin-bottom: 15px;
+    max-width: 800px;
+    margin: 0 Auto 15px;
+    background-color: rgb(222, 222, 222);
+}
+.formContainer{
+    box-shadow: 0 0 5px 5px rgb(235, 235, 235);
     border-radius: 15px;
+    max-width: 400px; 
+    background-color: white; 
+    margin: 40px auto;
+    padding: 30px 5px;
     display: flex;
-    justify-content: center;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
 }
 
-.todoContainer {
-    display: flex;
-    justify-content: space-around;
-
+.inputArea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border-color: rgb(235, 235, 235);;
 }
 
-.listContainer {
-    width: 250px;
-    background-color: aliceblue;
-    border-radius: 15px;
-    border: black;
-    border-style: solid 1px;
-    padding: 25px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-
+.selectMenu {
+    border: none;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
 }
 
-.formContainer {
-
-
-}
-
-/* FOOTER */
-
-footer {
-    background-color: black;
+.submitBtn{
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: blue;
     color: white;
-    text-align: center;
-    padding: 25px;
 }
+
+.todoTitle{
+    /* background-color: rgb(241, 241, 241); */
+    background-color:  rgb(85, 85, 255);
+    color: white;
+    padding: 5px;
+    font-size: 1.3em;
+    /* box-shadow: 0 0 5px 5px rgb(235, 235, 235); */
+    /* box-shadow: 0 0 5px 5px rgb(178, 178, 251); */
+    border-radius: 15px;
+    margin-bottom: 10px;
+
+}
+.todosContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.todoContainer{
+    box-shadow: 0 0 5px 5px rgb(235, 235, 235);
+    border-radius: 15px;
+    min-height: 300px;
+    min-width: 300px;
+    max-width: 450px; 
+    background-color: white; 
+    margin: 15px;
+    padding: 15px;
+}
+
+  /*******************************************************************************/
+ /*                                FOOTER                                       */
+/*******************************************************************************/
+footer {
+    box-shadow: 0 0 10px 10px rgb(235, 235, 235);
+    padding: 50px;
+    background-color: rgb(85, 85, 255);
+    color: white;
+}
+
+
